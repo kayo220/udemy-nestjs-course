@@ -4,7 +4,7 @@ import { ApiProperty } from "@nestjs/swagger";
 export class CreateTaskDto {
     @ApiProperty()
     @IsNotEmpty()
-    tittle: string;
+    title: string;
 
     @ApiProperty()
     @IsNotEmpty()
