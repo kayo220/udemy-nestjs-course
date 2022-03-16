@@ -3,17 +3,19 @@ import { Task } from "./task.entity";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { TaskStatus } from "./task-status.enum";
 import { GetTasksFilterDto } from "./dto/get-tasks-filter.dto";
+import { User } from "../auth/user.entity";
 
 @EntityRepository(Task)
 export class TasksRepository extends Repository<Task>{
 
-    async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+    async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
         const { title, description } = createTaskDto
 
         const task = this.create({
             title,
             description,
-            status: TaskStatus.OPEN
+            status: TaskStatus.OPEN,
+            user
         })
 
         await this.save(task);
@@ -21,21 +23,18 @@ export class TasksRepository extends Repository<Task>{
         return task;
     }
 
-    async getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
+    async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {
         const query = this.createQueryBuilder('task');
         const { status, search } = filterDto;
+        query.where({ user });
 
 
-        if (status && search) {//both filters on
-            query.andWhere('task.status = :status AND (LOWER(task.status) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))', { status, search: `%${search}%` })
-        }
-
-        else if (status) {
+        if (status) {
             query.andWhere('task.status = :status', { status })
         }
 
-        else if (search) {
-            query.andWhere('LOWER(task.status) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search)', { search: `%${search}%` })
+        if (search) {
+            query.andWhere('(LOWER(task.status) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))', { search: `%${search}%` })
         }
 
         const tasks = query.getMany()
