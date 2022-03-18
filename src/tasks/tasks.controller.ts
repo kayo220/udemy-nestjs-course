@@ -44,7 +44,7 @@ export class TasksController {
         return await this.taskService.deleteTask(id, user);
     }
 
-    @Patch('/:id')
+    @Patch('/:id/status')
     async updateTask(@Param('id') id: string,
         @Body() updateTaskDto: UpdateTaskDto, @GetUser() user: User): Promise<Task> {
         return await this.taskService.updateTask(id, updateTaskDto, user);
