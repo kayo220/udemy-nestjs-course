@@ -2,7 +2,7 @@
 Avaliable at: [Online](https://kayo220.github.io/task-management-frontend/#/tasks). The project was implemented using: NestJs, TypeOrm, Docker, Swagger and Postgre.
 
 ## Front-end
-The front-end application acts as the front-end for the Task Management application developed throughout the NestJS - Zero to Hero course, produced by Ariel Weinberger. You can see the project at: [Task Management -- Frontend Repository]https://github.com/kayo220/task-management-frontend). 
+The front-end application acts as the front-end for the Task Management application developed throughout the NestJS - Zero to Hero course, produced by Ariel Weinberger. You can see the project at: [Task Management -- Frontend Repository] (https://github.com/kayo220/task-management-frontend). 
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
