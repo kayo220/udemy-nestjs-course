@@ -1,5 +1,4 @@
 # Task management - NestJs - Curso
-## Kayo Costa
 Avaliable at: [Online](https://kayo220.github.io/task-management-frontend/#/tasks). The project was implemented using: NestJs, TypeOrm, Docker, Swagger and Postgre.
 
 ## Front-end
